@@ -1,0 +1,38 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "oracledb",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "oracledb",
+        "description": "oracledb",
+        "detail": "oracledb",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "margem",
+        "kind": 5,
+        "importPath": "crud",
+        "description": "crud",
+        "peekOfCode": "margem = ' ' * 4\nwhile conexao:\n        os.system('cls')\n        print(\"---- CRUD - PETSHOP ----\")\n        print(\"\"\"\n              1 - CADASTRAR PET\n              2 - LISTAR PETS\n              3 - MODIFICAR PET\n              4 - EXCLUIR PET\n              5 - EXCLUIR TODOS OS PETS",
+        "detail": "crud",
+        "documentation": {}
+    }
+]

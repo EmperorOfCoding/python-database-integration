@@ -3,7 +3,7 @@ import oracledb
 import pandas as pd
 
 try:
-    conn = oracledb.connect(user="rm557449", password="010305", dsn="oracle.fiap.com.br:1521/ORCL")
+    conn = oracledb.connect(user="######", password="#####", dsn="####") #Digite o seu usuário, senha, url da conexao do banco
 
     inst_cadastro = conn.cursor()
     inst_consulta = conn.cursor()
@@ -145,6 +145,104 @@ while conexao:
                     else:
                          print("Dados Atualizados")
                          input("Pressione ENTER")
+
+
+               case 4:
+
+                    try:
+                         print("----- EXCLUIR O PET -----\n")
+                         
+                         lista_dados = []
+
+                         pet_id = input(margem + "Escolha um Id: ")
+
+                         if pet_id.isdigit():
+                              
+                              pet_id = int(pet_id)
+
+                              consulta = f"""SELECT * FROM petshop WHERE id = {pet_id}"""
+                              inst_consulta.execute(consulta)
+                              data = inst_consulta.fetchall()
+
+                              for dt in data:
+                                   lista_dados.append(dt)
+
+                              if len(lista_dados) == 0:
+                                   print(f"Nao há um pet cadastrado com o ID = {pet_id}")
+                                   input("Pressione ENTER")
+
+                              else:
+                                   exclusao = f"DELETE FROM petshop WHERE id={pet_id}"
+                                   inst_exclusao.execute(exclusao)
+                                   conn.commit()
+                                   print("\n##### PET APAGADO! #####")
+
+                         else:
+                              print("O Id nao é numérico!")
+                              input("Pressione ENTER")
+
+                         
+                    except Exception as e:
+                         print("Erro = ", e)
+
+
+               case 5:
+
+                    try:
+                         print("----- EXCLUIR TODOS OS PETS -----\n")
+
+                         confirma = input(margem + "CONFIRMA A EXCLUSAO DE TODOS OS PETS? [S]im ou [N]ao?")
+
+                         if confirma.upper() == "S":
+
+                              exclusao = "DELETE FROM petshop"
+                              inst_exclusao.execute(exclusao)
+                              conn.commit()
+
+                              #Depois de excluir, é necessário resetar os IDS para comecar a partir do 0.
+
+                              data_reset_ids = """ALTER TABLE petshop MODIFY(ID GENERATED AS IDENTITY (START WITH 1))"""
+                              inst_exclusao.execute(data_reset_ids)
+                              conn.commit()
+
+                              print("##### REGISTROS EXCLUIDOS COM SUCESSO! #####")
+                              input("Pressione ENTER")
+
+                         else:
+                              print("Operacao cancelada pelo usuário!")
+                              input("Pressione ENTER")
+
+                         input("Pressione ENTER")
+
+
+                    except Exception as e:
+                         print("Erro = ", e)
+
+
+
+          
+
+
+
+
+
+
+
+
+
+                                   
+
+
+
+
+
+
+
+
+
+
+
+                    
 
 
 
